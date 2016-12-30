@@ -62,6 +62,9 @@ class Assignment
       # use the TodoList Model class to find all TodoLists with the supplied list_name.
       # NOTE: List name is not required to be unique, thus you can have many lists with the same list name.
       # return a collection of TodoList instances that match the provided name
+      list = TodoList.all.where(list_name: name)
+
+      return list
   end
 
   #
@@ -71,12 +74,18 @@ class Assignment
       # accept an id input parameter
       # use the User Model class to get the User associated with the `id` primary key
       # return the User instance that matches the provided id
+      getUser = User.find(id)
+
+      return getUser
   end
 
   def get_todolist_byid(id)
       # accept an id input parameter
       # use the TodoList Model class to get the TodoList associated with the `id` primary key
       # return the TodoList instance that matches the provided id
+      getList = TodoList.find(id)
+
+      return getList
   end
 
   #
@@ -86,12 +95,16 @@ class Assignment
       # accept an id and password_digest input parameters
       # use the User Model class to update the `password_digest` for the User associated with the id primary key
       # (no return is required)
+      newPw = User.find(id).update(password_digest: password_digest)
+
+      return newPw
   end
 
   def update_listname(id, name)
       # accept an id and name input parameters
       # use the TodoList Model class to update the `list_name` for the TodoList associated with id primary key
       # (no return is required)
+      TodoList.find(id).update(list_name: name)
   end
 
   #
