@@ -12,9 +12,9 @@ class Assignment
       # use the User Model class to create a new user in the DB
       # return an instance of the class with primary key (`id`), and
       # dates (`created_at` and `updated_at`) assigned
-      User.create(:username => params[:username], :password_digest => params[:password_digest])
+      user = User.create(:username => params[:username], :password_digest => params[:password_digest])
 
-
+      return user
   end
 
   def create_todolist(params)
@@ -23,7 +23,9 @@ class Assignment
       # use the TodoList Model class to create a new user in the DB
       # return an instance of the class with primary key (`id`), and
       #  dates (`created_at` and `updated_at`) assigned
-      TodoList.create(:list_name => params[:name], :list_due_date => params[:due_date])
+      list = TodoList.create(:list_name => params[:name], :list_due_date => params[:due_date])
+
+      return list
   end
 
   #
@@ -34,14 +36,18 @@ class Assignment
       # use the User Model class to find all Users,
       # ordered by `updated_at` ascending, with specified row offset and row limit
       # return a collection of User instances that represent the specified rows
-      User.all.order('updated_at').limit(limit).offset(offset)
+      users = User.all.order('updated_at').limit(limit).offset(offset)
+
+      return users
   end
 
   def find_alllists(offset, limit)
       # accept offset and limit input parameters
       # use the TodoList Model class to find all TodoLists, ordered by `list_due_date` descending, with specified row offset and row limit
       # return a collection of TodoList instances that represent the specified rows
-      TodoList.all.order('list_due_date DESC').limit(limit).offset(offset)
+      list = TodoList.all.order('list_due_date DESC').limit(limit).offset(offset)
+
+      return list
   end
 
   #
@@ -104,7 +110,9 @@ class Assignment
       # accept an id and name input parameters
       # use the TodoList Model class to update the `list_name` for the TodoList associated with id primary key
       # (no return is required)
-      TodoList.find(id).update(list_name: name)
+      update = TodoList.find(id).update(list_name: name)
+
+      return update
   end
 
   #
@@ -114,11 +122,13 @@ class Assignment
       # accept an id input parameter
       # use the User Model class to remove the User associated with the `id` primary key from the database
       # (no return is required)
+      User.delete(id)
   end
 
   def delete_todolist(id)
       # accept an id input parameter
       # use the TodoList Model class to remove the TodoList associated with the `id` primary key.
       # (no return is required)
+      TodoList.delete(id)
   end
 end
