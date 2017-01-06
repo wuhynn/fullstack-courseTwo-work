@@ -18,11 +18,11 @@ Profile.create! [
 ]
 
 #TodoList per user due one year from now
-fast_forward_one_year = Date.today + 1.year
+fast_forward_one_year = Date.today + 365
 
 Profile.all.each do |profile|
     profile.create_user(username: profile.last_name, password_digest: profile.first_name)
-    profile.user.todo_lists.create!(list_name: profile.first_name, list_due_date: profile.fast_forward_one_year)
+    profile.user.todo_lists.create!(list_name: profile.first_name, list_due_date: fast_forward_one_year)
 end
 
 TodoList.all.each do |theList|
