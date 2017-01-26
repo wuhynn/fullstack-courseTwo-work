@@ -27,7 +27,7 @@ end
 
 TodoList.all.each do |theList|
   5.times do
-    theList.todo_items.create!(title: "Important Task", description: "Don't become president.")
+    theList.todo_items.create!(title: "Important Task", description: "Don't become president.", due_date: fast_forward_one_year)
 
   end
 end
